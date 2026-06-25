@@ -1,0 +1,41 @@
+name: Test and deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Run Go tests
+        run: go test ./...
+
+      - name: Verify Docker build
+        run: docker build -t docker-go-web .
+
+      - name: Generate deployment package
+        if: github.ref == 'refs/heads/master'
+        run: zip -r deploy.zip . -x '*.git*' '*.github*'
+
+      - name: Deploy to Elastic Beanstalk
+        if: github.ref == 'refs/heads/master'
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: docker-go-web
+          environment_name: Docker-go-web-env
+          region: us-east-1
+          version_label: ${{ github.sha }}
+          deployment_package: deploy.zip
