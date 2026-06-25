@@ -1,0 +1,59 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+
+# Test binary
+*.test
+
+# Coverage
+*.cover
+coverage.out
+coverage.html
+
+# Go workspace
+bin/
+dist/
+
+# Dependencies
+vendor/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# IntelliJ IDEA / GoLand
+.idea/
+*.iml
+out/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Docker Compose overrides
+docker-compose.override.yml
+
+# Temporary files
+tmp/
+temp/
+
+# Build artifacts
+build/
+
+# GitHub Actions artifacts
+*.zip
