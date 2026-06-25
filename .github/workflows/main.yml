@@ -34,8 +34,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: docker-go-web
-          environment_name: Docker-go-web-env
+          application_name: docker-react
+          environment_name: docker-react-env
           region: us-east-1
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
