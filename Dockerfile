@@ -1,7 +1,7 @@
 FROM golang:1.26-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o server main.go
+RUN go build -o server ./cmd/simple_web.go
 
 FROM alpine
 WORKDIR /app
