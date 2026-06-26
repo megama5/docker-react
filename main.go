@@ -16,7 +16,7 @@ func main() {
 }
 
 func response(w http.ResponseWriter, r *http.Request) {
-	_, err := fmt.Fprintln(w, "Hello from Go on Elastic Beanstalk")
+	_, err := fmt.Fprintln(w, "Hello from Go on Elastic Beanstalk + feature")
 	if err != nil {
 		log.Fatal(err)
 	}
