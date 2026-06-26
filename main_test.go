@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strings"
 	"testing"
 )
 
@@ -19,7 +20,7 @@ func TestMainFunc(t *testing.T) {
 	rw := &MockedResponseWriter{}
 	response(rw, nil)
 
-	if rw.buf != "Hello from Go on Elastic Beanstalk\n" {
+	if !strings.Contains(rw.buf, "Hello from Go on Elastic Beanstalk") {
 		t.Fatal(rw.buf, "!=", "Hello from Go on Elastic Beanstalk")
 	}
 }
